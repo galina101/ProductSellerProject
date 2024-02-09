@@ -1,6 +1,7 @@
 package org.example.Controller;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.example.Exception.ProductException;
+import org.example.Exception.SellerException;
 import org.example.Main;
 import org.example.Model.Product;
 import org.example.Model.Seller;
@@ -62,7 +63,7 @@ public class InventoryController {
 //            201 - resource created
             context.status(201);
             sellerService.toString();
-        } catch (JsonProcessingException e) {
+        } catch (JsonProcessingException | SellerException e) {
 //            Jackson was unable to parse the JSON, probably due to user error, so 400
             context.status(400);
             e.printStackTrace();

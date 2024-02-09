@@ -24,7 +24,7 @@ public class ProductService {
 
     public Product insertProduct(Product product) throws ProductException{
         //product ID and product name cannot be null
-        if(product.getProductId() == null || product.getProductName() == null){
+        if(product.getProductId() == null || product.getProductName() == null || product.getProductName() == ""){
             throw new ProductException("Id and product name fields must be non-null");
         }
         //price must be over zero
@@ -79,7 +79,7 @@ public class ProductService {
 
 
         //product ID and product name cannot be null
-        if(product.getProductId() == null || product.getProductName() == null){
+        if(product.getProductId() == null || product.getProductName() == null|| product.getProductName() == ""){
             throw new ProductException("Id and product name fields must be non-null");
         }
         //price must be over zero

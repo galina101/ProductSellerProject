@@ -1,5 +1,7 @@
 package org.example.Service;
 
+import org.example.Exception.ProductException;
+import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 
@@ -20,7 +22,11 @@ public class SellerService {
         return sellerList;
     }
 
-    public static void insertSeller(Seller seller){
+    public static void insertSeller(Seller seller) throws SellerException {
+
+        if(seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == ""){
+            throw new SellerException("Seller name cannot be null");
+        }
         sellerList.add(seller);
     }
 
