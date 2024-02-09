@@ -10,6 +10,7 @@ import java.util.List;
 
 public class SellerService {
 
+    //HashSet will check that the seller name is unique
     static HashSet<Seller> sellerList;
     public SellerService(){
         sellerList = new HashSet<>();
@@ -38,10 +39,7 @@ public class SellerService {
             if(currentSeller.getSellerName().equalsIgnoreCase(sellerName)){
                 return currentSeller;
             }
-
-        //for(int i = 0; i < sellerList.size(); i++){
-
-        }
+       }
         return null;
     }
 }

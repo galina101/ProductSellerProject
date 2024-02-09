@@ -43,8 +43,7 @@ public class InventoryController {
         api.post("/product/", InventoryController::postProductHandler);
         api.get("/product/{id}/", InventoryController::getProductByIdHandler);
         api.delete("/product/{id}", InventoryController::deleteProductByIdHandler);
-       // api.put("/product/{id}", InventoryController::updateProductByIdHandler);
-       // api.put("/product-update/{id}",InventoryController::updateProductByIdHandler);
+        api.put("/product/{id}", InventoryController::updateProductByIdHandler);
 
         return api;
     }
@@ -88,6 +87,9 @@ public class InventoryController {
         } catch (ProductException e) {
             context.result(e.getMessage());
             context.status(400);
+        }catch (NullPointerException e) {
+            context.result(e.getMessage());
+            context.status(400);
         }
     }
 
@@ -118,7 +120,7 @@ public class InventoryController {
         }
     }
 
-    public void updateProductByIdHandler(Context context) {
+    public static void updateProductByIdHandler(Context context) throws ProductException {
         try {
             //retrieve ID
             int productId = Integer.parseInt(context.pathParam("id"));
@@ -146,7 +148,7 @@ public class InventoryController {
                     Main.log.warn("Product update - SUCCESS");
                     context.result("Product update - SUCCESS");
                     context.status(200);
-                    context.json(newProduct);
+                  //  context.json(newProduct);
                 } catch (JsonMappingException e) {
                     throw new RuntimeException(e);
                 }

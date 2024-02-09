@@ -25,7 +25,7 @@ public class ProductService {
     public Product insertProduct(Product product) throws ProductException{
         //product ID and product name cannot be null
         if(product.getProductId() == null || product.getProductName() == null){
-            throw new ProductException("id and product name fields must be non-null");
+            throw new ProductException("Id and product name fields must be non-null");
         }
         //price must be over zero
         if (product.getPrice()<=0 || product.getPrice() == null) {
@@ -36,14 +36,14 @@ public class ProductService {
             throw new ProductException("Seller does not exist");
         }
 
-            //generate product ID
+        //generate product ID
         Random random = new Random();
         int id = random.nextInt (Integer.MAX_VALUE);
         //int id = (int) (Math.random() * Integer.MAX_VALUE);
+
         product.setProductId(id);
         productList.add(product);
         return product;
-
     }
 
     public Product getProductById(int id){
@@ -75,7 +75,23 @@ public class ProductService {
         productList.remove(getProductById(id));
     }
 
-    public void updateProductById (int id, Product product){
+    public void updateProductById (int id, Product product) throws ProductException {
+
+
+        //product ID and product name cannot be null
+        if(product.getProductId() == null || product.getProductName() == null){
+            throw new ProductException("Id and product name fields must be non-null");
+        }
+        //price must be over zero
+        if (product.getPrice()<=0 || product.getPrice() == null) {
+            throw new ProductException("Product price must be more than zero");
+        }
+        //if seller exists in the Seller array
+        if(sellerService.getSellerByName(product.getSellerName()) == null){
+            throw new ProductException("Seller does not exist");
+        }
+
         productList.set(id,product);
+
     }
 }

@@ -9,7 +9,7 @@ public class Seller {
 
     public Seller() {
     }
-    //check that the seller name is unique
+
     public Seller(String sellerName) {
         this.sellerName = sellerName;
     }
