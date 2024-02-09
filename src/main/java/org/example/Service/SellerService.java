@@ -4,20 +4,22 @@ import org.example.Model.Product;
 import org.example.Model.Seller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 public class SellerService {
 
-    List<Seller> sellerList;
+    static HashSet<Seller> sellerList;
     public SellerService(){
-        sellerList = new ArrayList<>();
+        sellerList = new HashSet<>();
     }
 
-    public List<Seller> getAllSellers(){
+    public HashSet<Seller> getAllSellers(){
         return sellerList;
     }
 
-    public void insertSeller(Seller seller){
+    public static void insertSeller(Seller seller){
         sellerList.add(seller);
     }
 
@@ -27,5 +29,21 @@ public class SellerService {
                 "sellerList=" + sellerList +
                 '}';
     }
+
+    public Seller getSellerByName(String sellerName){
+        Iterator<Seller> i = sellerList.iterator();
+
+        while (i.hasNext()){
+            Seller currentSeller = i.next();
+            if(currentSeller.getSellerName().equalsIgnoreCase(sellerName)){
+                return currentSeller;
+            }
+
+        //for(int i = 0; i < sellerList.size(); i++){
+
+        }
+        return null;
+    }
 }
+
 
