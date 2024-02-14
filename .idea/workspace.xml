@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Started on unit tests. Exceptions still need review.">
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Added more unit tests. &#10;Exceptions still need review.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,9 +59,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.ProductServiceTest.addMultipleSellerTest.executor": "Run",
+    "JUnit.ProductServiceTest.addProductInvalidSeller.executor": "Run",
+    "JUnit.ProductServiceTest.addProductNameIsEmptyString.executor": "Run",
+    "JUnit.ProductServiceTest.addProductNameIsNull.executor": "Run",
+    "JUnit.ProductServiceTest.addProductPriceIsNegative.executor": "Run",
+    "JUnit.ProductServiceTest.addProductPriceIsNull.executor": "Run",
     "JUnit.ProductServiceTest.addProductTest.executor": "Run",
     "JUnit.ProductServiceTest.addSellerTest.executor": "Run",
-    "JUnit.ProductServiceTest.executor": "Debug",
+    "JUnit.ProductServiceTest.executor": "Coverage",
+    "JUnit.ProductServiceTest.getPositionByIDTest.executor": "Run",
+    "JUnit.ProductServiceTest.getProductByIdTest.executor": "Run",
+    "JUnit.ProductServiceTest.updateProductByIdTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -83,7 +94,7 @@
       <recent name="org.example.Exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest.addProductTest">
+  <component name="RunManager" selected="JUnit.ProductServiceTest">
     <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
@@ -93,21 +104,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.addProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.addMultipleSellerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="addProductTest" />
+      <option name="METHOD_NAME" value="addMultipleSellerTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.addSellerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.addProductPriceIsNegative" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="addSellerTest" />
+      <option name="METHOD_NAME" value="addProductPriceIsNegative" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.getPositionByIDTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="getPositionByIDTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.updateProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="updateProductByIdTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,9 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductServiceTest.addProductTest" />
-        <item itemvalue="JUnit.ProductServiceTest.addSellerTest" />
         <item itemvalue="JUnit.ProductServiceTest" />
+        <item itemvalue="JUnit.ProductServiceTest.updateProductByIdTest" />
+        <item itemvalue="JUnit.ProductServiceTest.addMultipleSellerTest" />
+        <item itemvalue="JUnit.ProductServiceTest.getPositionByIDTest" />
+        <item itemvalue="JUnit.ProductServiceTest.addProductPriceIsNegative" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +174,7 @@
       <workItem from="1707249297994" duration="36997000" />
       <workItem from="1707771627173" duration="991000" />
       <workItem from="1707833567272" duration="2244000" />
-      <workItem from="1707853112877" duration="12936000" />
+      <workItem from="1707853112877" duration="18395000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -183,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707940154736</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="First working unit test. Exceptions still need review.">
+      <option name="closed" value="true" />
+      <created>1707941029806</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707941029806</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,39 +236,80 @@
     <MESSAGE value="Working post, get, get by ID, delete, update. Exceptions need review." />
     <MESSAGE value="Working post, get, get by ID, delete, update. Added checks for null and empty products and sellers. Exceptions need review." />
     <MESSAGE value="Started on unit tests. Exceptions still need review." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started on unit tests. Exceptions still need review." />
+    <MESSAGE value="First working unit test. Exceptions still need review." />
+    <MESSAGE value="Added more unit tests. &#10;Exceptions still need review." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more unit tests. &#10;Exceptions still need review." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>25</line>
+          <line>18</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java</url>
-          <line>89</line>
+          <line>85</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>49</line>
+          <line>63</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>293</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>31</line>
+          <line>27</line>
           <properties class="ProductServiceTest" method="addSellerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>141</line>
+          <properties class="ProductServiceTest" method="addProductNameIsNull">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707937624753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707944646258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

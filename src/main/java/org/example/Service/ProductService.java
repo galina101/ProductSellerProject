@@ -1,11 +1,7 @@
 package org.example.Service;
 
-import kotlin.Pair;
-import org.example.Main;
 import org.example.Model.Product;
 import org.example.Exception.ProductException;
-import org.example.Model.Seller;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +33,7 @@ public class ProductService {
         return product;
     }
 
-    public Product getProductById(int id){
+    public static Product getProductById(int id){
         Product currentProduct;
 
         for(int i = 0; i < productList.size(); i++){
