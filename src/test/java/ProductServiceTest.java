@@ -302,23 +302,20 @@ public class ProductServiceTest {
 
     }
     //Test delete product by ID
-
-    //Check for duplicate sellers
     @Test
-    public void checkDuplicateSellers () throws SellerException, ProductException {
+    public void deleteProductByIdTest() throws SellerException, ProductException {
         Seller seller = new Seller();
-        seller.setSellerName("Home Depot");
+        seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
 
-        Seller seller1 = new Seller();
-        seller1.setSellerName("Amazon");
+        Seller seller1 = new Seller("Home Depot");
         sellerService.insertSeller(seller1);
 
         Product product = new Product();
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("Home Depot");
+        product.setSellerName("YKK");
 
         Product product1 = new Product();
         product1.setProductId(34545);
@@ -330,9 +327,39 @@ public class ProductServiceTest {
         productService.insertProduct(product1);
 
         List<Product> productList = productService.getAllProducts();
-        int id = productList.get(0).getProductId();
 
-        Assert.assertEquals(0,(long)productService.getPosition(id));
+        int index = productList.get(0).getProductId();
+
+        //Delete product at index 0
+        productService.deleteProductById(index);
+
+
+        int actual = 1;
+        int expected = productList.size();
+
+        Assert.assertEquals(actual,expected);
+
+    }
+
+//TODO: duplicate seller test doesn't work as expected. If a new Seller object is created, the test passes. Need to compare Strings, not objects
+    //Check for duplicate sellers
+    @Test
+    public void checkDuplicateSellers () throws SellerException, ProductException {
+        Seller seller = new Seller();
+        seller.setSellerName("Home Depot");
+        sellerService.insertSeller(seller);
+
+        Seller seller1 = new Seller();
+        seller1.setSellerName("Home Depot");
+
+        Exception exception = new ProductException("Duplicate Seller");
+
+        //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
+        // https://www.baeldung.com/junit-assert-exception
+        Assert.assertThrows(Exception.class,
+                () -> {
+                    sellerService.insertSeller(seller1);
+                });
 
 
     }

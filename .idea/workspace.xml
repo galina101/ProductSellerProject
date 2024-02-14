@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Added more unit tests. &#10;Exceptions still need review.">
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Unit tests are at 90% code coverage.&#10;Exceptions still need review.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
     </list>
@@ -14,6 +13,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -67,7 +69,9 @@
     "JUnit.ProductServiceTest.addProductPriceIsNull.executor": "Run",
     "JUnit.ProductServiceTest.addProductTest.executor": "Run",
     "JUnit.ProductServiceTest.addSellerTest.executor": "Run",
-    "JUnit.ProductServiceTest.executor": "Coverage",
+    "JUnit.ProductServiceTest.checkDuplicateSellers.executor": "Run",
+    "JUnit.ProductServiceTest.deleteProductByIdTest.executor": "Run",
+    "JUnit.ProductServiceTest.executor": "Run",
     "JUnit.ProductServiceTest.getPositionByIDTest.executor": "Run",
     "JUnit.ProductServiceTest.getProductByIdTest.executor": "Run",
     "JUnit.ProductServiceTest.updateProductByIdTest.executor": "Run",
@@ -114,21 +118,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.addProductPriceIsNegative" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.checkDuplicateSellers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="addProductPriceIsNegative" />
+      <option name="METHOD_NAME" value="checkDuplicateSellers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.getPositionByIDTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.deleteProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="getPositionByIDTest" />
+      <option name="METHOD_NAME" value="deleteProductByIdTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,10 +151,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ProductServiceTest" />
+        <item itemvalue="JUnit.ProductServiceTest.checkDuplicateSellers" />
+        <item itemvalue="JUnit.ProductServiceTest.deleteProductByIdTest" />
         <item itemvalue="JUnit.ProductServiceTest.updateProductByIdTest" />
         <item itemvalue="JUnit.ProductServiceTest.addMultipleSellerTest" />
-        <item itemvalue="JUnit.ProductServiceTest.getPositionByIDTest" />
-        <item itemvalue="JUnit.ProductServiceTest.addProductPriceIsNegative" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +178,7 @@
       <workItem from="1707249297994" duration="36997000" />
       <workItem from="1707771627173" duration="991000" />
       <workItem from="1707833567272" duration="2244000" />
-      <workItem from="1707853112877" duration="18395000" />
+      <workItem from="1707853112877" duration="20074000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -224,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707941029806</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Unit tests are at 90% code coverage.&#10;Exceptions still need review.">
+      <option name="closed" value="true" />
+      <created>1707946572971</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707946572971</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +250,8 @@
     <MESSAGE value="Started on unit tests. Exceptions still need review." />
     <MESSAGE value="First working unit test. Exceptions still need review." />
     <MESSAGE value="Added more unit tests. &#10;Exceptions still need review." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more unit tests. &#10;Exceptions still need review." />
+    <MESSAGE value="Unit tests are at 90% code coverage.&#10;Exceptions still need review." />
+    <option name="LAST_COMMIT_MESSAGE" value="Unit tests are at 90% code coverage.&#10;Exceptions still need review." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -279,14 +292,14 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
           <line>293</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>333</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
@@ -310,6 +323,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707944646258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707947431712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

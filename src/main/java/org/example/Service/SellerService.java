@@ -1,14 +1,9 @@
 package org.example.Service;
 
-import org.example.Exception.ProductException;
 import org.example.Exception.SellerException;
-import org.example.Model.Product;
 import org.example.Model.Seller;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 public class SellerService {
 
@@ -25,16 +20,22 @@ public class SellerService {
     public static void insertSeller(Seller seller) throws SellerException {
 
         //check if seller name is null
-        if(seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == ""){
+        if (seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == "") {
             throw new SellerException("Seller name cannot be null");
         }
-        //if seller name already exists in seller list
-        //if (sellerList.contains(seller)){
 
-        for (Seller existing : sellerList){
+        //check if seller name already exists in seller list
+        Iterator<Seller> it = sellerList.iterator();
+        while (it.hasNext()) {
+           String existingSellerName = it.next().getSellerName();
+           String newSellerName = seller.getSellerName();
+           int comparison = newSellerName.compareToIgnoreCase(existingSellerName);
+           if (comparison == 0) {
+               throw new SellerException("Duplicate Seller");
+            }
 
-            throw new SellerException("Duplicate Seller");
         }
+
 
         sellerList.add(seller);
     }
