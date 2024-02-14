@@ -18,9 +18,6 @@ public class Main {
         ProductService productService = new ProductService(sellerService);
         InventoryController inventoryController = new InventoryController(sellerService, productService);
 
-        //Car newCar = new Car("Acura", "RDX", 2024);
-        //carService.insertCar(newCar);
-
         Javalin api = inventoryController.getAPI();
         api.start(9005);
         }

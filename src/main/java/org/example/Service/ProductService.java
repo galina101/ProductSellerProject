@@ -23,26 +23,17 @@ public class ProductService {
     }
 
     public Product insertProduct(Product product) throws ProductException{
-        //product ID and product name cannot be null
-        if(product.getProductId() == null || product.getProductName() == null || product.getProductName() == ""){
-            throw new ProductException("Id and product name fields must be non-null");
-        }
-        //price must be over zero
-        if (product.getPrice()<=0 || product.getPrice() == null) {
-            throw new ProductException("Product price must be more than zero");
-        }
-        //if seller exists in the Seller array
-        if(sellerService.getSellerByName(product.getSellerName()) == null){
-            throw new ProductException("Seller does not exist");
-        }
 
-        //generate product ID
-        Random random = new Random();
-        int id = random.nextInt (Integer.MAX_VALUE);
-        //int id = (int) (Math.random() * Integer.MAX_VALUE);
+        if (verifyProduct(product)) {
 
-        product.setProductId(id);
-        productList.add(product);
+            //generate product ID
+            Random random = new Random();
+            int id = random.nextInt(Integer.MAX_VALUE);
+            //int id = (int) (Math.random() * Integer.MAX_VALUE);
+
+            product.setProductId(id);
+            productList.add(product);
+        }
         return product;
     }
 
@@ -69,6 +60,7 @@ public class ProductService {
             }
         }
         return null;
+        //throw ProductException("Product ID not found");
     }
 
     public void deleteProductById(int id){
@@ -76,7 +68,14 @@ public class ProductService {
     }
 
     public void updateProductById (int id, Product product) throws ProductException {
+        if (verifyProduct(product))
+        {
+            productList.set(id,product);
+        }
 
+    }
+
+    public boolean verifyProduct (Product product) throws ProductException{
 
         //product ID and product name cannot be null
         if(product.getProductId() == null || product.getProductName() == null|| product.getProductName() == ""){
@@ -90,8 +89,6 @@ public class ProductService {
         if(sellerService.getSellerByName(product.getSellerName()) == null){
             throw new ProductException("Seller does not exist");
         }
-
-        productList.set(id,product);
-
+      return true;
     }
 }

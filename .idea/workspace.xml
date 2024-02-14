@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Working post, get, get by ID, delete, update. Exceptions need review.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Exception/SellerException.java" afterDir="false" />
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Working post, get, get by ID, delete, update. Added checks for null and empty products and sellers. Exceptions need review.">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,15 +28,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;galina101&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="944bb3b4-6f6f-43a9-a5c2-5202a5c3c524" />
+        <option name="url" value="https://github.com/galina101/ProductSellerProject" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/geico/m2_repo/com/fasterxml/jackson/core/jackson-databind/2.14.0-rc1/jackson-databind-2.14.0-rc1.jar!/com/fasterxml/jackson/databind/exc/MismatchedInputException.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2c0X6EWknSKIvMzB9myg8FynN4i" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -46,6 +62,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.ProductServiceTest.addProductTest.executor": "Run",
+    "JUnit.ProductServiceTest.addSellerTest.executor": "Run",
+    "JUnit.ProductServiceTest.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -69,6 +88,44 @@
       <recent name="org.example.Exception" />
     </key>
   </component>
+  <component name="RunManager" selected="JUnit.ProductServiceTest.addSellerTest">
+    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.addProductTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="addProductTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.addSellerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="addSellerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProductServiceTest.addSellerTest" />
+        <item itemvalue="JUnit.ProductServiceTest" />
+        <item itemvalue="JUnit.ProductServiceTest.addProductTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -86,7 +143,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707249296907</updated>
-      <workItem from="1707249297994" duration="36403000" />
+      <workItem from="1707249297994" duration="36997000" />
+      <workItem from="1707771627173" duration="991000" />
+      <workItem from="1707833567272" duration="2244000" />
+      <workItem from="1707853112877" duration="11219000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -112,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707510769134</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working post, get, get by ID, delete, update. Added checks for null and empty products and sellers. Exceptions need review.">
+      <option name="closed" value="true" />
+      <created>1707511966204</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707511966204</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +190,31 @@
     <MESSAGE value="Working post, get, get by ID. Delete is still in progress" />
     <MESSAGE value="Working post, get, get by ID, delete. Update is still in progress" />
     <MESSAGE value="Working post, get, get by ID, delete, update. Exceptions need review." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working post, get, get by ID, delete, update. Exceptions need review." />
+    <MESSAGE value="Working post, get, get by ID, delete, update. Added checks for null and empty products and sellers. Exceptions need review." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working post, get, get by ID, delete, update. Added checks for null and empty products and sellers. Exceptions need review." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707937624753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

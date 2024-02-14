@@ -24,9 +24,18 @@ public class SellerService {
 
     public static void insertSeller(Seller seller) throws SellerException {
 
+        //check if seller name is null
         if(seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == ""){
             throw new SellerException("Seller name cannot be null");
         }
+        //if seller name already exists in seller list
+        //if (sellerList.contains(seller)){
+
+        for (Seller existing : sellerList){
+
+            throw new SellerException("Duplicate Seller");
+        }
+
         sellerList.add(seller);
     }
 

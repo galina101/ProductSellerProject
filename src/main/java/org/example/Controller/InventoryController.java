@@ -62,7 +62,9 @@ public class InventoryController {
             sellerService.insertSeller(seller1);
 //            201 - resource created
             context.status(201);
-            sellerService.toString();
+            context.json(seller1);
+            Main.log.warn("Product creation - SUCCESS");
+
         } catch (JsonProcessingException | SellerException e) {
 //            Jackson was unable to parse the JSON, probably due to user error, so 400
             context.status(400);
@@ -88,7 +90,7 @@ public class InventoryController {
         } catch (ProductException e) {
             context.result(e.getMessage());
             context.status(400);
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             context.result(e.getMessage());
             context.status(400);
         }
@@ -122,41 +124,41 @@ public class InventoryController {
     }
 
     public static void updateProductByIdHandler(Context context) throws ProductException {
-        try {
-            //retrieve ID
-            int productId = Integer.parseInt(context.pathParam("id"));
-            Product oldProduct = productService.getProductById(productId);
+        //retrieve ID
+        int productId = Integer.parseInt(context.pathParam("id"));
+        Product oldProduct = productService.getProductById(productId);
 
-            //confirm that the product id is not null. If it is, then FAIL
-            if (productId == 0) {
-                Main.log.warn("Product update - FAILED");
-                context.result("Product update - FAILED. Id is NULL");
+        //confirm that the product id is not null. If it is, then FAIL
+        if (productId == 0) {
+            Main.log.warn("Product update - FAILED");
+            context.result("Product update - FAILED. Id is NULL");
+            context.status(200);
+        } else {
+
+            try {
+                //convert the ID into the index in the array
+                int index = ProductService.getPosition(productId);
+                int oldProductId = oldProduct.getProductId();
+
+                //retrieve new product information
+                ObjectMapper om = new ObjectMapper();
+                Product newProduct = om.readValue(context.body(), Product.class);
+
+                //update product
+                productService.updateProductById(index, newProduct);
+
+                Main.log.warn("Product update - SUCCESS");
+                context.result("Product update - SUCCESS");
                 context.status(200);
-            } else {
-
-                try {
-                    //convert the ID into the index in the array
-                    int index = ProductService.getPosition(productId);
-                    int oldProductId = oldProduct.getProductId();
-
-                    //retrieve new product information
-                    ObjectMapper om = new ObjectMapper();
-                    Product newProduct = om.readValue(context.body(), Product.class);
-
-                    //update product
-                    productService.updateProductById(index, newProduct);
-
-                    Main.log.warn("Product update - SUCCESS");
-                    context.result("Product update - SUCCESS");
-                    context.status(200);
-                  //  context.json(newProduct);
-                } catch (JsonMappingException e) {
-                    throw new RuntimeException(e);
-                }
+                context.json(newProduct);
+            } catch (JsonMappingException e) {
+                throw new RuntimeException(e);
+            } catch (JsonProcessingException | ProductException | NullPointerException e) {
+                context.result(e.getMessage());
+                context.status(400);
             }
-        } catch (JsonProcessingException e) {
-            context.status(400);
-        }
 
+        }
     }
 }
+
