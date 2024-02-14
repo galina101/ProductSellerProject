@@ -341,7 +341,7 @@ public class ProductServiceTest {
 
     }
 
-//TODO: duplicate seller test doesn't work as expected. If a new Seller object is created, the test passes. Need to compare Strings, not objects
+
     //Check for duplicate sellers
     @Test
     public void checkDuplicateSellers () throws SellerException, ProductException {
