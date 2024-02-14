@@ -20,11 +20,12 @@ public class ProductServiceTest {
     SellerService sellerService;
     ProductService productService;
     static HashSet<Seller> sellerList;
-    List<Product> productList;
+    static List<Product> productList;
     @Before
     public void setUp(){
         sellerService = new SellerService();
         productService = new ProductService(sellerService);
+
     }
     //Add a seller to the sellerList
     @Test
@@ -49,14 +50,12 @@ public class ProductServiceTest {
         product.setPrice(40.00);
         product.setSellerName("YKK");
 
-        List<Product> productList;
-
-        System.out.println(productList.toString());
-
         productService.insertProduct(product);
-        System.out.println(productList.isEmpty());
 
-        Assert.assertFalse(productList.isEmpty()); //Which product list is referenced here?
+        List<Product> productList = productService.getAllProducts();
+        Product actual = productList.get(0);
+
+        Assert.assertFalse(productList.isEmpty());
 
     }
 
