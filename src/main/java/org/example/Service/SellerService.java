@@ -4,6 +4,7 @@ import org.example.Exception.SellerException;
 import org.example.Model.Seller;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
 
 public class SellerService {
 
@@ -35,6 +36,11 @@ public class SellerService {
             }
 
         }
+        //generate seller ID
+        Random random = new Random();
+        int id = random.nextInt(Integer.MAX_VALUE);
+
+        seller.setSellerId(id);
         sellerList.add(seller);
     }
 

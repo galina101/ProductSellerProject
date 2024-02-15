@@ -93,6 +93,7 @@ public class InventoryController {
             Product newProduct = productService.insertProduct(p);
             context.status(201);
             context.json(newProduct);
+            Main.log.warn("Product creation - SUCCESS");
         } catch (JsonProcessingException e) {
             context.status(400);
         } catch (ProductException e) {

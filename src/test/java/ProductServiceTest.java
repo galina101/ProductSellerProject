@@ -267,11 +267,10 @@ public class ProductServiceTest {
     //Test update product by ID
     @Test
     public void updateProductByIdTest() throws SellerException, ProductException {
-        Seller seller = new Seller();
-        seller.setSellerName("YKK");
+        Seller seller = new Seller(5678, "YKK");
         sellerService.insertSeller(seller);
 
-        Seller seller1 = new Seller("Home Depot");
+        Seller seller1 = new Seller(1234,"Home Depot");
         sellerService.insertSeller(seller1);
 
         Product product = new Product();
@@ -304,11 +303,10 @@ public class ProductServiceTest {
     //Test delete product by ID
     @Test
     public void deleteProductByIdTest() throws SellerException, ProductException {
-        Seller seller = new Seller();
-        seller.setSellerName("YKK");
+        Seller seller = new Seller(1234, "YKK");;
         sellerService.insertSeller(seller);
 
-        Seller seller1 = new Seller("Home Depot");
+        Seller seller1 = new Seller(5678,"Home Depot");
         sellerService.insertSeller(seller1);
 
         Product product = new Product();

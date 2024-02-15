@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="All unit tests are working as expected. Fixed duplicate sellers method.&#10;Exceptions still need review.">
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Exceptions were reviewed and error messages are now displaying in Postman">
+      <change afterPath="$PROJECT_DIR$/h2/db.mv.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h2/db.trace.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Util/ConnectionSingleton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +87,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/A178393/IdeaProjects/ProductSellerProject/h2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -94,6 +99,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\A178393\IdeaProjects\ProductSellerProject\h2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\A178393\IdeaProjects\ProductSellerProject\src\main\java\org\example\Model" />
     </key>
@@ -181,7 +189,7 @@
       <workItem from="1707249297994" duration="36997000" />
       <workItem from="1707771627173" duration="991000" />
       <workItem from="1707833567272" duration="2244000" />
-      <workItem from="1707853112877" duration="25932000" />
+      <workItem from="1707853112877" duration="29375000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -255,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707948436187</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Exceptions were reviewed and error messages are now displaying in Postman">
+      <option name="closed" value="true" />
+      <created>1708013899388</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708013899388</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +287,8 @@
     <MESSAGE value="Added more unit tests. &#10;Exceptions still need review." />
     <MESSAGE value="Unit tests are at 90% code coverage.&#10;Exceptions still need review." />
     <MESSAGE value="All unit tests are working as expected. Fixed duplicate sellers method.&#10;Exceptions still need review." />
-    <option name="LAST_COMMIT_MESSAGE" value="All unit tests are working as expected. Fixed duplicate sellers method.&#10;Exceptions still need review." />
+    <MESSAGE value="Exceptions were reviewed and error messages are now displaying in Postman" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exceptions were reviewed and error messages are now displaying in Postman" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

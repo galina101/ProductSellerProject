@@ -5,12 +5,14 @@ package org.example.Model;
  *         Seller Name (must be unique)
  */
 public class Seller {
+    private Integer sellerId;
     private String sellerName;
 
     public Seller() {
     }
 
-    public Seller(String sellerName) {
+    public Seller(Integer sellerId, String sellerName) {
+        this.sellerId = sellerId;
         this.sellerName = sellerName;
     }
 
@@ -22,4 +24,11 @@ public class Seller {
         this.sellerName = sellerName;
     }
 
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
 }
