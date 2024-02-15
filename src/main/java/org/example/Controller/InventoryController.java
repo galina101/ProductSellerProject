@@ -54,7 +54,7 @@ public class InventoryController {
         context.json(sellerList);
     }
 
-    public static void postSellerHandler(Context context) throws JsonProcessingException {
+    public static void postSellerHandler(Context context) {
         //https://fasterxml.github.io/jackson-databind/javadoc/2.12/com/fasterxml/jackson/databind/ObjectMapper.html
         ObjectMapper om = new ObjectMapper();
         try {
@@ -63,14 +63,22 @@ public class InventoryController {
 //            201 - resource created
             context.status(201);
             context.json(seller1);
-            Main.log.warn("Product creation - SUCCESS");
+            context.result("Seller creation - SUCCESS");
+            Main.log.warn("Seller creation - SUCCESS");
 
-        } catch (JsonProcessingException | SellerException e) {
+        } catch (JsonProcessingException e) {
 //            Jackson was unable to parse the JSON, probably due to user error, so 400
             context.status(400);
+            context.result(e.getMessage());
             e.printStackTrace();
-            System.out.println("Check JSON formatting");
+            System.out.println("Error: Check JSON formatting");
+        } catch (SellerException e){
+            context.status(400);
+            context.result(e.getMessage());
+            e.printStackTrace();
         }
+
+
     }
 
     public static void getAllProductHandler(Context context) {
@@ -78,7 +86,7 @@ public class InventoryController {
         context.json(productList);
     }
 
-    public static void postProductHandler(Context context) throws JsonProcessingException {
+    public static void postProductHandler(Context context){
         try {
             ObjectMapper om = new ObjectMapper();
             Product p = om.readValue(context.body(), Product.class);

@@ -364,4 +364,26 @@ public class ProductServiceTest {
 
     }
 
+
+    @Test
+    //seller name is null
+    public void addSellerNameIsNull() throws SellerException, ProductException {
+        Seller seller = new Seller();
+        seller.setSellerName("YKK");
+        sellerService.insertSeller(seller);
+
+        Seller seller1 = new Seller();
+        seller1.setSellerName(null);
+
+
+        Exception exception = new ProductException("Error: Seller name cannot be null");
+
+        //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
+        // https://www.baeldung.com/junit-assert-exception
+        Assert.assertThrows(Exception.class,
+                () -> {
+                    sellerService.insertSeller(seller1);
+                });
+    }
+
 }

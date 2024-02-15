@@ -21,7 +21,7 @@ public class SellerService {
 
         //check if seller name is null
         if (seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == "") {
-            throw new SellerException("Seller name cannot be null");
+            throw new SellerException("Error: Seller name cannot be null");
         }
 
         //check if seller name already exists in seller list
@@ -31,12 +31,10 @@ public class SellerService {
            String newSellerName = seller.getSellerName();
            int comparison = newSellerName.compareToIgnoreCase(existingSellerName);
            if (comparison == 0) {
-               throw new SellerException("Duplicate Seller");
+               throw new SellerException("Error: Duplicate Seller");
             }
 
         }
-
-
         sellerList.add(seller);
     }
 

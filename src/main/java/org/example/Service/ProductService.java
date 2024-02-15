@@ -75,15 +75,15 @@ public class ProductService {
 
         //product ID and product name cannot be null
         if(product.getProductId() == null || product.getProductName() == null|| product.getProductName() == ""){
-            throw new ProductException("Id and product name fields must be non-null");
+            throw new ProductException("Error: Id and product name fields must be non-null");
         }
         //price must be over zero
         if (product.getPrice()<=0 || product.getPrice() == null) {
-            throw new ProductException("Product price must be more than zero");
+            throw new ProductException("Error: Product price must be more than zero");
         }
         //if seller exists in the Seller array
         if(sellerService.getSellerByName(product.getSellerName()) == null){
-            throw new ProductException("Seller does not exist");
+            throw new ProductException("Error: Seller does not exist");
         }
       return true;
     }
