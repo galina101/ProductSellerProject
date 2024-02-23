@@ -12,16 +12,16 @@ public class Product {
     private Integer productId;
     private String productName;
     private Double price;
-    private String sellerName;
+    private Integer sellerId;
 
     public Product() {
 
     }
-    public Product(Integer productId, String productName, Double price, String sellerName) {
+    public Product(Integer productId, String productName, Double price, Integer sellerId) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
-        this.sellerName = sellerName;
+        this.sellerId = sellerId;
     }
 
     public Integer getProductId() {
@@ -36,9 +36,8 @@ public class Product {
         return price;
     }
 
-    public String getSellerName() {
-        return sellerName;
-    }
+    public Integer getSellerId() {return sellerId;}
+
 
     //check for the product ID to be unique
     public void setProductId(Integer productId) {
@@ -53,8 +52,8 @@ public class Product {
         this.price = price;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
     }
 
 
@@ -64,7 +63,7 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
-                ", sellerName='" + sellerName + '\'' +
+                ", sellerId='" + sellerId + '\'' +
                 '}';
     }
 }

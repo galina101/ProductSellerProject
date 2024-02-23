@@ -77,12 +77,16 @@ public class ProductService {
         if(product.getProductId() == null || product.getProductName() == null|| product.getProductName() == ""){
             throw new ProductException("Error: Id and product name fields must be non-null");
         }
+        //price cannot be null
+        if (product.getPrice() == null){
+            throw new ProductException("Error: Product price cannot be null");
+        }
         //price must be over zero
-        if (product.getPrice()<=0 || product.getPrice() == null) {
+        if (product.getPrice()<=0) {
             throw new ProductException("Error: Product price must be more than zero");
         }
         //if seller exists in the Seller array
-        if(sellerService.getSellerByName(product.getSellerName()) == null){
+        if(sellerService.getSellerById(product.getSellerId()) == null){
             throw new ProductException("Error: Seller does not exist");
         }
       return true;

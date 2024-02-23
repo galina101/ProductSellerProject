@@ -1,10 +1,12 @@
 package org.example.Service;
 
 import org.example.Exception.SellerException;
+import org.example.Main;
 import org.example.Model.Seller;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+import org.example.Model.Seller;
 
 public class SellerService {
 
@@ -51,12 +53,16 @@ public class SellerService {
                 '}';
     }
 
-    public Seller getSellerByName(String sellerName){
+    public Seller getSellerById(Integer id){
         Iterator<Seller> i = sellerList.iterator();
 
         while (i.hasNext()){
             Seller currentSeller = i.next();
-            if(currentSeller.getSellerName().equalsIgnoreCase(sellerName)){
+            Main.log.warn("currentSeller.getSellerId() " + currentSeller.getSellerId());
+            Main.log.warn("id passed " + id);
+            Main.log.warn("currentSeller.getSellerId() == id " + (currentSeller.getSellerId()).equals(id));
+
+            if((currentSeller.getSellerId()).equals(id)){
                 return currentSeller;
             }
        }

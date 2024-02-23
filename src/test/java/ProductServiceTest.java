@@ -5,9 +5,14 @@ import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
+import org.example.Util.ConnectionSingleton;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,21 +21,38 @@ public class ProductServiceTest {
     ProductService productService;
     @Before
     public void setUp(){
+     //   ConnectionSingleton.resetTestDatabase();
+
         sellerService = new SellerService();
         productService = new ProductService(sellerService);
+//        Seller seller = new Seller();
+//        seller.setSellerName("YKK");
 
-        //Why seller cannot be defined in the setUp class and used by multiple tests?
-       // Seller seller = new Seller();
-       // seller.setSellerName("YKK");
     }
+
+
+//    @BeforeEach
+//    public void initialize() throws SellerException{
+//         Seller seller = new Seller();
+//         seller.setSellerName("YKK");
+//         sellerService.insertSeller(seller);
+//    }
+
+    @AfterEach
+    public void teardown(){
+
+    }
+
+
+
     //Add a seller to the sellerList
     @Test
-    public void addSellerTest() throws SellerException {
+    public void addSellerTest() {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
-        sellerService.insertSeller(seller);
 
         HashSet<Seller> sellerList = sellerService.getAllSellers();
+
         Assert.assertFalse(sellerList.isEmpty());
 
     }
@@ -62,7 +84,7 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         productService.insertProduct(product);
 
@@ -85,13 +107,13 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerName("YKK");
+        product1.setSellerId(seller.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
@@ -117,13 +139,13 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerName("Amazon");
+        product1.setSellerId(seller.getSellerId());
 
         productService.insertProduct(product);
 
@@ -148,13 +170,13 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName(null);
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Exception exception = new ProductException("Id and product name fields must be non-null");
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(ProductException.class, //changed from Exception.class
                 () -> {
                     productService.insertProduct(product);
                 });
@@ -172,7 +194,7 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Exception exception = new ProductException("Id and product name fields must be non-null");
 
@@ -195,7 +217,7 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(null);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Exception exception = new ProductException("Product price must be more than zero");
 
@@ -218,7 +240,7 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(-1.0);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Exception exception = new ProductException("Product price must be more than zero");
 
@@ -245,13 +267,13 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("Home Depot");
+        product.setSellerId(seller.getSellerId());
 
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerName("Home Depot");
+        product.setSellerId(seller.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
@@ -277,13 +299,13 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
+        product.setSellerId(seller.getSellerId());
 
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerName("Home Depot");
+        product.setSellerId(seller1.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
@@ -313,13 +335,12 @@ public class ProductServiceTest {
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
-        product.setSellerName("YKK");
-
+        product.setSellerId(seller.getSellerId());
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerName("Home Depot");
+        product.setSellerId(seller1.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
@@ -383,5 +404,6 @@ public class ProductServiceTest {
                     sellerService.insertSeller(seller1);
                 });
     }
+
 
 }
