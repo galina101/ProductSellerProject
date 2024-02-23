@@ -5,23 +5,25 @@ import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
-import org.example.Util.ConnectionSingleton;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+
+import static org.example.Service.ProductService.productList;
+import static org.example.Service.SellerService.sellerList;
 
 public class ProductServiceTest {
     SellerService sellerService;
     ProductService productService;
     @Before
     public void setUp(){
-     //   ConnectionSingleton.resetTestDatabase();
+       // ConnectionSingleton.resetTestDatabase();
+        // results in org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "SELLER" because "CONSTRAINT_18" depends on it; SQL statement:
+        // drop table seller if exists [90107-214]
 
         sellerService = new SellerService();
         productService = new ProductService(sellerService);
@@ -38,21 +40,16 @@ public class ProductServiceTest {
 //         sellerService.insertSeller(seller);
 //    }
 
-    @AfterEach
-    public void teardown(){
-
-    }
-
-
-
     //Add a seller to the sellerList
     @Test
-    public void addSellerTest() {
+    public void addSellerTest() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
 
-        HashSet<Seller> sellerList = sellerService.getAllSellers();
-
+       // HashSet<Seller> sellerList = sellerService.getAllSellers();
+        // Removed the reference to sellerList and productList and relied on the static value provided in service classes
+        // Imported those values
+        sellerService.insertSeller(seller);
         Assert.assertFalse(sellerList.isEmpty());
 
     }
@@ -88,13 +85,12 @@ public class ProductServiceTest {
 
         productService.insertProduct(product);
 
-        List<Product> productList = productService.getAllProducts();
+       // List<Product> productList = productService.getAllProducts();
         //Product actual = productList.get(0);
 
         Assert.assertFalse(productList.isEmpty());
 
     }
-
 
 @Test
 //Retrieve product by ID
@@ -127,7 +123,6 @@ public class ProductServiceTest {
 
     }
 
-
     @Test
     //Seller doesn't exist
     public void addProductInvalidSeller() throws SellerException, ProductException {
@@ -135,21 +130,27 @@ public class ProductServiceTest {
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
 
+        //create product #1
         Product product = new Product();
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
 
+        //Generate a seller ID that does NOT match the ID of the valid seller
+        Random random = new Random();
+        int id = random.nextInt(seller.getSellerId());
+
+        //create product #2
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerId(seller.getSellerId());
+        product1.setSellerId(id);
 
         productService.insertProduct(product);
 
-        Exception exception = new ProductException("Seller does not exist");
+        //Exception exception = new ProductException("Seller does not exist");
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
        // https://www.baeldung.com/junit-assert-exception
@@ -255,35 +256,39 @@ public class ProductServiceTest {
     //get position by ID
     @Test
     public void getPositionByIDTest () throws SellerException, ProductException {
+        //create seller #1
         Seller seller = new Seller();
         seller.setSellerName("Home Depot");
         sellerService.insertSeller(seller);
 
+        //create seller #2
         Seller seller1 = new Seller();
         seller1.setSellerName("Amazon");
         sellerService.insertSeller(seller1);
 
+        //create product #1
         Product product = new Product();
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
 
+        //create product #2
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product.setSellerId(seller.getSellerId());
+        product1.setSellerId(seller1.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
 
-        List<Product> productList = productService.getAllProducts();
+        //List<Product> productList = productService.getAllProducts();
+        //retrieve the product ID at index 0
         int id = productList.get(0).getProductId();
 
+        //pass the id at index 0 and confirm that it matches
         Assert.assertEquals(0,(long)productService.getPosition(id));
-
-
     }
 
     //Test update product by ID
@@ -305,7 +310,7 @@ public class ProductServiceTest {
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product.setSellerId(seller1.getSellerId());
+        product1.setSellerId(seller1.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);
@@ -331,16 +336,18 @@ public class ProductServiceTest {
         Seller seller1 = new Seller(5678,"Home Depot");
         sellerService.insertSeller(seller1);
 
+        //create 2 products
         Product product = new Product();
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
+
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product.setSellerId(seller1.getSellerId());
+        product1.setSellerId(seller1.getSellerId());
 
         productService.insertProduct(product);
         productService.insertProduct(product1);

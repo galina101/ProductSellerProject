@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class ProductService {
     SellerService sellerService;
-    static List<Product> productList;
+    public static List<Product> productList;
     public ProductService(SellerService sellerService){
         this.sellerService = sellerService;
         productList = new ArrayList<>();

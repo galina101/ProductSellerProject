@@ -11,7 +11,7 @@ import org.example.Model.Seller;
 public class SellerService {
 
     //HashSet will check that the seller name is unique
-    static HashSet<Seller> sellerList;
+    public static HashSet<Seller> sellerList;
     public SellerService(){
         sellerList = new HashSet<>();
     }

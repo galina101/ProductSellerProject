@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Fixed the error messages in Postman. Previously price null returned 500 error, but now returns 400 with an explanation.">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/ProductDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/db.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/db.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/db.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
@@ -74,7 +66,7 @@
     "Application.Main.executor": "Run",
     "Database Script.Tables.sql.executor": "Run",
     "JUnit.ProductServiceTest.addMultipleSellerTest.executor": "Run",
-    "JUnit.ProductServiceTest.addProductInvalidSeller.executor": "Debug",
+    "JUnit.ProductServiceTest.addProductInvalidSeller.executor": "Run",
     "JUnit.ProductServiceTest.addProductNameIsEmptyString.executor": "Run",
     "JUnit.ProductServiceTest.addProductNameIsNull.executor": "Run",
     "JUnit.ProductServiceTest.addProductPriceIsNegative.executor": "Run",
@@ -85,7 +77,7 @@
     "JUnit.ProductServiceTest.checkDuplicateSellers.executor": "Run",
     "JUnit.ProductServiceTest.deleteProductByIdTest.executor": "Run",
     "JUnit.ProductServiceTest.executor": "Run",
-    "JUnit.ProductServiceTest.getPositionByIDTest.executor": "Run",
+    "JUnit.ProductServiceTest.getPositionByIDTest.executor": "Debug",
     "JUnit.ProductServiceTest.getProductByIdTest.executor": "Run",
     "JUnit.ProductServiceTest.updateProductByIdTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -123,20 +115,7 @@
       <recent name="org.example.Exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest.addSellerTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="ProductSellerProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ProductServiceTest">
     <configuration name="Tables.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/src/main/resources/Tables.sql" />
       <script-mode>FILE</script-mode>
@@ -162,21 +141,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.addSellerNameIsNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.deleteProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="addSellerNameIsNull" />
+      <option name="METHOD_NAME" value="deleteProductByIdTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.addSellerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.getPositionByIDTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="METHOD_NAME" value="addSellerTest" />
+      <option name="METHOD_NAME" value="getPositionByIDTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.updateProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="updateProductByIdTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductServiceTest.addSellerTest" />
-        <item itemvalue="JUnit.ProductServiceTest.addProductInvalidSeller" />
         <item itemvalue="JUnit.ProductServiceTest" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.ProductServiceTest.addSellerNameIsNull" />
+        <item itemvalue="JUnit.ProductServiceTest.deleteProductByIdTest" />
+        <item itemvalue="JUnit.ProductServiceTest.updateProductByIdTest" />
+        <item itemvalue="JUnit.ProductServiceTest.getPositionByIDTest" />
+        <item itemvalue="JUnit.ProductServiceTest.addProductInvalidSeller" />
       </list>
     </recent_temporary>
   </component>
@@ -215,7 +204,7 @@
       <workItem from="1707853112877" duration="48824000" />
       <workItem from="1708447612792" duration="5703000" />
       <workItem from="1708702011214" duration="228000" />
-      <workItem from="1708702247322" duration="3254000" />
+      <workItem from="1708702247322" duration="5586000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -305,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708020412159</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed the error messages in Postman. Previously price null returned 500 error, but now returns 400 with an explanation.">
+      <option name="closed" value="true" />
+      <created>1708706003863</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708706003863</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +329,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>25</line>
+          <line>31</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -342,37 +339,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>85</line>
+          <line>86</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>18</line>
+          <line>22</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>164</line>
+          <line>169</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>67</line>
+          <line>68</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>68</line>
+          <line>69</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>314</line>
+          <line>323</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>352</line>
+          <line>363</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -385,9 +382,29 @@
           <line>92</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>291</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>270</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>272</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
+          <line>287</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>49</line>
+          <line>48</line>
           <properties class="ProductServiceTest" method="addSellerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -396,7 +413,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
-          <line>163</line>
+          <line>168</line>
           <properties class="ProductServiceTest" method="addProductNameIsNull">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -425,6 +442,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1707948350319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1708708011883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
