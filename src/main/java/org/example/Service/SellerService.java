@@ -1,26 +1,26 @@
 package org.example.Service;
 
+import org.example.DAO.SellerDAO;
 import org.example.Exception.SellerException;
 import org.example.Main;
 import org.example.Model.Seller;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
-import org.example.Model.Seller;
 
 public class SellerService {
+    SellerDAO sellerDAO;
 
-    //HashSet will check that the seller name is unique
-    public static HashSet<Seller> sellerList;
-    public SellerService(){
-        sellerList = new HashSet<>();
+    public SellerService(SellerDAO sellerDAO) {
+        this.sellerDAO = sellerDAO;
     }
 
-    public HashSet<Seller> getAllSellers(){
-        return sellerList;
+    public List<Seller> getAllSellers() {
+        return sellerDAO.getAllSellers();
     }
 
-    public static void insertSeller(Seller seller) throws SellerException {
+    public void insertSeller(Seller seller) throws SellerException {
 
         //check if seller name is null
         if (seller.getSellerName() == null || seller.getSellerName() == null || seller.getSellerName() == "") {
@@ -28,46 +28,32 @@ public class SellerService {
         }
 
         //check if seller name already exists in seller list
-        Iterator<Seller> it = sellerList.iterator();
-        while (it.hasNext()) {
-           String existingSellerName = it.next().getSellerName();
-           String newSellerName = seller.getSellerName();
-           int comparison = newSellerName.compareToIgnoreCase(existingSellerName);
-           if (comparison == 0) {
-               throw new SellerException("Error: Duplicate Seller");
-            }
+        String newSellerName = seller.getSellerName();
 
+        if (SellerDAO.sellerNameExists(newSellerName)){
+            throw new SellerException("Error: Duplicate Seller");
         }
+
         //generate seller ID
         Random random = new Random();
         int id = random.nextInt(Integer.MAX_VALUE);
 
         seller.setSellerId(id);
-        sellerList.add(seller);
+        sellerDAO.insertSeller(seller);
     }
 
-    @Override
-    public String toString() {
-        return "SellerService{" +
-                "sellerList=" + sellerList +
-                '}';
-    }
 
-    public Seller getSellerById(Integer id){
-        Iterator<Seller> i = sellerList.iterator();
+    public Seller getSellerById(Integer id) throws SellerException {
+        Seller s = SellerDAO.getSellerById(id);
 
-        while (i.hasNext()){
-            Seller currentSeller = i.next();
-            Main.log.warn("currentSeller.getSellerId() " + currentSeller.getSellerId());
-            Main.log.warn("id passed " + id);
-            Main.log.warn("currentSeller.getSellerId() == id " + (currentSeller.getSellerId()).equals(id));
-
-            if((currentSeller.getSellerId()).equals(id)){
-                return currentSeller;
-            }
-       }
-        return null;
+        if(s == null){
+            throw new SellerException("No seller with such id found");
+        }else{
+            return s;
+        }
     }
 }
+
+
 
 

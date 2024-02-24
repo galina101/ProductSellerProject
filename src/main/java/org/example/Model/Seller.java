@@ -31,4 +31,12 @@ public class Seller {
     public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sellerId=" + sellerId +
+                ", sellerName='" + sellerName + '\'' +
+                '}';
+    }
 }

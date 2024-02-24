@@ -1,21 +1,29 @@
 package org.example.Service;
 
+import org.example.DAO.ProductDAO;
+import org.example.DAO.SellerDAO;
+import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Exception.ProductException;
+import org.example.Model.Seller;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ProductService {
-    SellerService sellerService;
-    public static List<Product> productList;
-    public ProductService(SellerService sellerService){
-        this.sellerService = sellerService;
-        productList = new ArrayList<>();
+   // SellerService sellerService;
+    //public static List<Product> productList;
+    ProductDAO productDAO;
+    SellerDAO sellerDAO;
+
+    public ProductService(ProductDAO productDAO){
+        this.productDAO = productDAO;
+        //productList = new ArrayList<>();
     }
 
     public List<Product> getAllProducts(){
-        return productList;
+        return productDAO.getAllProducts();
     }
 
     public Product insertProduct(Product product) throws ProductException{
@@ -28,49 +36,52 @@ public class ProductService {
             //int id = (int) (Math.random() * Integer.MAX_VALUE);
 
             product.setProductId(id);
-            productList.add(product);
+            productDAO.insertProduct(product);
         }
         return product;
     }
 
-    public static Product getProductById(int id){
-        Product currentProduct;
+    public static Product getProductById(int id) throws ProductException {
+        Product product = ProductDAO.getProductById(id);
 
-        for(int i = 0; i < productList.size(); i++){
-            currentProduct = productList.get(i);
-            if(currentProduct.getProductId() == id){
-
-                return currentProduct;
-            }
+        if(product == null){
+            throw new ProductException("No product with such id found");
+        }else{
+            return product;
         }
-        return null;
+//        for(int i = 0; i < productList.size(); i++){
+//            currentProduct = productList.get(i);
+//            if(currentProduct.getProductId() == id){
+//
+//                return currentProduct;
+//            }
+//        }
     }
     public static Integer getPosition(int id){
         Product currentProduct;
         int i =0;
 
-        for(i = 0; i < productList.size(); i++){
-            currentProduct = productList.get(i);
-            if(currentProduct.getProductId() == id){
-                return i;
-            }
-        }
+//        for(i = 0; i < productList.size(); i++){
+//            currentProduct = productList.get(i);
+//            if(currentProduct.getProductId() == id){
+//                return i;
+//            }
+//        }
         return null;
         //throw ProductException("Product ID not found");
     }
 
-    public void deleteProductById(int id){
-        productList.remove(getProductById(id));
+    public void deleteProductById(int id) {
+        ProductDAO.deleteProductById(id);
     }
 
-    public void updateProductById (int id, Product product) throws ProductException {
-        if (verifyProduct(product))
-        {
-            productList.set(id,product);
+
+        public void updateProductById (Product product) throws ProductException {
+            if (verifyProduct(product)) {
+                ProductDAO.updateProductById(product);
+
+            }
         }
-
-    }
-
     public boolean verifyProduct (Product product) throws ProductException{
 
         //product ID and product name cannot be null
@@ -86,9 +97,10 @@ public class ProductService {
             throw new ProductException("Error: Product price must be more than zero");
         }
         //if seller exists in the Seller array
-        if(sellerService.getSellerById(product.getSellerId()) == null){
+        if(sellerDAO.getSellerById(product.getSellerId()) == null){
             throw new ProductException("Error: Seller does not exist");
         }
-      return true;
+        return true;
     }
+//        }
 }

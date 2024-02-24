@@ -27,8 +27,8 @@ public class Main {
         SellerDAO sellerDAO = new SellerDAO(conn);
         ProductDAO productDAO = new ProductDAO(conn);
 
-        SellerService sellerService = new SellerService();
-        ProductService productService = new ProductService(sellerService);
+        SellerService sellerService = new SellerService(sellerDAO);
+        ProductService productService = new ProductService(productDAO);
 
         InventoryController inventoryController = new InventoryController(sellerService, productService);
 

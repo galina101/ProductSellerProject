@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import org.example.DAO.*;
 
 public class InventoryController {
 
@@ -20,8 +21,8 @@ public class InventoryController {
     static ProductService productService;
 
     public InventoryController(SellerService sellerService, ProductService productService) {
-        this.sellerService = new SellerService();
-        this.productService = new ProductService(sellerService);
+        this.sellerService = sellerService;
+        this.productService = productService;
     }
 
     public Javalin getAPI() {
@@ -37,6 +38,7 @@ public class InventoryController {
 
         /**Seller API calls*/
         api.get("/seller/", InventoryController::getAllSellerHandler);
+        api.get ("/seller/{id}", InventoryController::getSellerByIdHandler);
         api.post("/seller/", InventoryController::postSellerHandler);
 
         /**Product API calls*/
@@ -50,7 +52,7 @@ public class InventoryController {
     }
 
     public static void getAllSellerHandler(Context context) {
-        HashSet<Seller> sellerList = sellerService.getAllSellers();
+        List<Seller> sellerList = sellerService.getAllSellers();
         context.json(sellerList);
     }
 
@@ -77,8 +79,18 @@ public class InventoryController {
             context.result(e.getMessage());
             e.printStackTrace();
         }
+    }
 
-
+    public static void getSellerByIdHandler(Context context) throws SellerException {
+        int id = Integer.parseInt(context.pathParam("id"));
+        Seller seller = sellerService.getSellerById(id);
+        if (seller == null) {
+            context.status(404);
+            context.result("No seller found");
+        } else {
+            context.json(seller);
+            context.status(200);
+        }
     }
 
     public static void getAllProductHandler(Context context) {
@@ -105,7 +117,7 @@ public class InventoryController {
         }
     }
 
-    public static void getProductByIdHandler(Context context) {
+    public static void getProductByIdHandler(Context context) throws ProductException {
         int id = Integer.parseInt(context.pathParam("id"));
         Product product = productService.getProductById(id);
         if (product == null) {
@@ -117,7 +129,7 @@ public class InventoryController {
         }
     }
 
-    public static void deleteProductByIdHandler(Context context) {
+    public static void deleteProductByIdHandler(Context context) throws ProductException {
         int id = Integer.parseInt(context.pathParam("id"));
         Product product = productService.getProductById(id);
         if (product == null) {
@@ -125,6 +137,8 @@ public class InventoryController {
             context.result("Product deletion - FAILED");
             context.status(200);
         } else {
+          //  productDAO.deleteProductById(id);
+
             productService.deleteProductById(id);
             Main.log.warn("Product deletion - SUCCESS");
             context.result("Product deletion - SUCCESS");
@@ -146,15 +160,15 @@ public class InventoryController {
 
             try {
                 //convert the ID into the index in the array
-                int index = ProductService.getPosition(productId);
-                int oldProductId = oldProduct.getProductId();
+//                int index = ProductService.getPosition(productId);
+//                int oldProductId = oldProduct.getProductId();
 
                 //retrieve new product information
                 ObjectMapper om = new ObjectMapper();
                 Product newProduct = om.readValue(context.body(), Product.class);
 
                 //update product
-                productService.updateProductById(index, newProduct);
+                productService.updateProductById(newProduct);
 
                 Main.log.warn("Product update - SUCCESS");
                 context.result("Product update - SUCCESS");
@@ -162,7 +176,7 @@ public class InventoryController {
                 context.json(newProduct);
             } catch (JsonMappingException e) {
                 throw new RuntimeException(e);
-            } catch (JsonProcessingException | ProductException | NullPointerException e) {
+            } catch (JsonProcessingException  | NullPointerException | ProductException e) {
                 context.result(e.getMessage());
                 context.status(400);
             }

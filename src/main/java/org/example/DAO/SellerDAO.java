@@ -1,5 +1,6 @@
 package org.example.DAO;
 
+import org.example.Exception.SellerException;
 import org.example.Model.Seller;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SellerDAO {
-    Connection conn;
+    static Connection conn;
 
     public SellerDAO(Connection conn){
         this.conn = conn;
@@ -31,7 +32,7 @@ public class SellerDAO {
         }
     }
 
-    public List<Seller> getAllSellers(){
+    public static List<Seller> getAllSellers(){
         List<Seller> sellerResults = new ArrayList<>();
         try {
             PreparedStatement ps2 = conn.prepareStatement("select * from seller");
@@ -48,7 +49,7 @@ public class SellerDAO {
 
         return sellerResults;
     }
-    public Seller getSellerById(int id){
+    public static Seller getSellerById(int id){
         try{
             PreparedStatement ps = conn.prepareStatement(
                     "select * from seller where seller_id = ?");
@@ -67,6 +68,51 @@ public class SellerDAO {
         }
         return null;
     }
+    public static Seller getSellerByName(String name){
+        try{
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from seller where seller_name = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int sellerId = rs.getInt("seller_id");
+                String sellerName = rs.getString("seller_name");
+                Seller seller = new Seller(sellerId, sellerName);
+                return seller;
+            }else{
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    public static boolean sellerNameExists(String name) throws SellerException {
+        try{
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from seller where seller_name = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                int sellerId = rs.getInt("seller_id");
+                String sellerName = rs.getString("seller_name");
+                Seller seller = new Seller(sellerId, sellerName);
+
+                String existingSellerName = seller.getSellerName();
+                String newSellerName = seller.getSellerName();
+                int comparison = newSellerName.compareToIgnoreCase(existingSellerName);
+                if (comparison == 0) {
+                    throw new SellerException("Error: Duplicate Seller");
+                } else {
+                    return false;
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 

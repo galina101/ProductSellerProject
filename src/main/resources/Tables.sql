@@ -1,5 +1,5 @@
-drop table seller if exists;
-drop table product if exists;
+drop table product cascade;
+drop table seller cascade;
 
 
 create table seller (
