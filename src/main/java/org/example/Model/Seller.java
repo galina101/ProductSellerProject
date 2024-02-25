@@ -2,10 +2,6 @@ package org.example.Model;
 
 import java.util.Objects;
 
-/**
- *     Seller
- *         Seller Name (must be unique)
- */
 public class Seller {
     private Integer sellerId;
     private String sellerName;

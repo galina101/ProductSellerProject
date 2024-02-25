@@ -68,6 +68,7 @@ public class SellerDAO {
         }
         return null;
     }
+    //Placed here to be used with the test to update the product
     public static Seller getSellerByName(String name){
         try{
             PreparedStatement ps = conn.prepareStatement(
@@ -115,4 +116,3 @@ public class SellerDAO {
         return false;
     }
 }
-

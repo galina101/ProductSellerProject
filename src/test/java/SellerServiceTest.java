@@ -33,8 +33,6 @@ public class SellerServiceTest {
 
         sellerService = new SellerService(sellerDAO);
         productService = new ProductService(productDAO);
-//        Seller seller = new Seller();
-//        seller.setSellerName("YKK");
 
     }
 
@@ -145,18 +143,15 @@ public class SellerServiceTest {
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(SellerException.class,
                 () -> {
                     sellerService.insertSeller(seller1);
                 });
-
-
     }
-
 
     @Test
     //seller name is null
-    public void addSellerNameIsNull() throws SellerException, ProductException {
+    public void addSellerNameIsNull() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
@@ -166,7 +161,7 @@ public class SellerServiceTest {
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(SellerException.class,
                 () -> {
                     sellerService.insertSeller(seller1);
                 });

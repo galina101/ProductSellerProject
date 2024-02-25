@@ -27,9 +27,7 @@ public class SellerService {
         //check if seller name already exists in seller list
         String newSellerName = seller.getSellerName();
 
-        if (SellerDAO.sellerNameExists(newSellerName)){
-            throw new SellerException("Error: Duplicate Seller");
-        }
+       SellerDAO.sellerNameExists(newSellerName);
 
         //generate seller ID
         Random random = new Random();

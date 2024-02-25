@@ -2,24 +2,18 @@ package org.example.Service;
 
 import org.example.DAO.ProductDAO;
 import org.example.DAO.SellerDAO;
-import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Exception.ProductException;
-import org.example.Model.Seller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ProductService {
-   // SellerService sellerService;
-    //public static List<Product> productList;
     ProductDAO productDAO;
     SellerDAO sellerDAO;
 
     public ProductService(ProductDAO productDAO){
         this.productDAO = productDAO;
-        //productList = new ArrayList<>();
     }
 
     public List<Product> getAllProducts(){
@@ -79,5 +73,4 @@ public class ProductService {
         }
         return true;
     }
-//        }
 }

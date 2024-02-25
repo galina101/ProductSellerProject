@@ -15,8 +15,6 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.util.List;
 
-
-
 public class ProductServiceTest {
     SellerService sellerService;
     ProductService productService;
@@ -33,9 +31,6 @@ public class ProductServiceTest {
 
         sellerService = new SellerService(sellerDAO);
         productService = new ProductService(productDAO);
-//        Seller seller = new Seller();
-//        seller.setSellerName("YKK");
-
     }
 
 
@@ -64,7 +59,6 @@ public class ProductServiceTest {
 
         List<Product> productList = productDAO.getAllProducts();
         Assert.assertFalse(productList.isEmpty());
-
     }
 
 @Test
@@ -127,17 +121,15 @@ public class ProductServiceTest {
         productService.insertProduct(product);
         productService.insertProduct(product1);
 
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(ProductException.class,
                 () -> {
                     //Retrieve the product from DB with non-existing id
-                    ProductService.getProductById(56);
+                    ProductService.getProductById(0);
                 });
       }
-
-
 @Test
     //product name is null
-    public void addProductNameIsNull() throws SellerException, ProductException {
+    public void addProductNameIsNull() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
@@ -147,8 +139,6 @@ public class ProductServiceTest {
         product.setProductName(null);
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
-
-        Exception exception = new ProductException("Id and product name fields must be non-null");
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
@@ -161,7 +151,7 @@ public class ProductServiceTest {
 
     //product name is an empty string
     @Test
-    public void addProductNameIsEmptyString() throws SellerException, ProductException {
+    public void addProductNameIsEmptyString() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
@@ -174,7 +164,7 @@ public class ProductServiceTest {
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(ProductException.class,
                 () -> {
                     productService.insertProduct(product);
                 });
@@ -182,7 +172,7 @@ public class ProductServiceTest {
 
     //product price is null
     @Test
-    public void addProductPriceIsNull() throws SellerException, ProductException {
+    public void addProductPriceIsNull() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
@@ -193,11 +183,9 @@ public class ProductServiceTest {
         product.setPrice(null);
         product.setSellerId(seller.getSellerId());
 
-        Exception exception = new ProductException("Product price must be more than zero");
-
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(ProductException.class,
                 () -> {
                     productService.insertProduct(product);
                 });
@@ -216,11 +204,9 @@ public class ProductServiceTest {
         product.setPrice(-1.0);
         product.setSellerId(seller.getSellerId());
 
-        Exception exception = new ProductException("Product price must be more than zero");
-
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
+        Assert.assertThrows(ProductException.class,
                 () -> {
                     productService.insertProduct(product);
                 });
