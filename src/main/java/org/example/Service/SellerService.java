@@ -2,10 +2,7 @@ package org.example.Service;
 
 import org.example.DAO.SellerDAO;
 import org.example.Exception.SellerException;
-import org.example.Main;
 import org.example.Model.Seller;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -41,8 +38,6 @@ public class SellerService {
         seller.setSellerId(id);
         sellerDAO.insertSeller(seller);
     }
-
-
     public Seller getSellerById(Integer id) throws SellerException {
         Seller s = SellerDAO.getSellerById(id);
 
@@ -53,7 +48,3 @@ public class SellerService {
         }
     }
 }
-
-
-
-

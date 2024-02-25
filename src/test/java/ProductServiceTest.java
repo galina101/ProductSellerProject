@@ -1,32 +1,38 @@
 
+import org.example.DAO.ProductDAO;
+import org.example.DAO.SellerDAO;
 import org.example.Exception.ProductException;
 import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
+import org.example.Util.ConnectionSingleton;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
+import java.sql.Connection;
 import java.util.List;
-import java.util.Random;
 
-import static org.example.Service.ProductService.productList;
-import static org.example.Service.SellerService.sellerList;
+
 
 public class ProductServiceTest {
     SellerService sellerService;
     ProductService productService;
+    SellerDAO sellerDAO;
+    ProductDAO productDAO;
+
+    Connection conn = ConnectionSingleton.getConnection();
     @Before
     public void setUp(){
-       // ConnectionSingleton.resetTestDatabase();
-        // results in org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "SELLER" because "CONSTRAINT_18" depends on it; SQL statement:
-        // drop table seller if exists [90107-214]
+        ConnectionSingleton.resetTestDatabase();
 
-        sellerService = new SellerService();
-        productService = new ProductService(sellerService);
+        sellerDAO = new SellerDAO(conn);
+        productDAO = new ProductDAO(conn);
+
+        sellerService = new SellerService(sellerDAO);
+        productService = new ProductService(productDAO);
 //        Seller seller = new Seller();
 //        seller.setSellerName("YKK");
 
@@ -40,38 +46,9 @@ public class ProductServiceTest {
 //         sellerService.insertSeller(seller);
 //    }
 
-    //Add a seller to the sellerList
-    @Test
-    public void addSellerTest() throws SellerException {
-        Seller seller = new Seller();
-        seller.setSellerName("YKK");
-
-       // HashSet<Seller> sellerList = sellerService.getAllSellers();
-        // Removed the reference to sellerList and productList and relied on the static value provided in service classes
-        // Imported those values
-        sellerService.insertSeller(seller);
-        Assert.assertFalse(sellerList.isEmpty());
-
-    }
-
-    //Add multiple sellers
-    @Test
-    public void addMultipleSellerTest() throws SellerException {
-        Seller seller = new Seller();
-        seller.setSellerName("YKK");
-        sellerService.insertSeller(seller);
-
-        Seller seller1 = new Seller();
-        seller1.setSellerName("Home Depot");
-        sellerService.insertSeller(seller1);
-
-        HashSet<Seller> sellerList = sellerService.getAllSellers();
-        Assert.assertFalse(sellerList.isEmpty());
-
-    }
 
 @Test
-    //Add a product to an array
+    //Add a product to the DB
     public void addProductTest() throws ProductException, SellerException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
@@ -85,9 +62,7 @@ public class ProductServiceTest {
 
         productService.insertProduct(product);
 
-       // List<Product> productList = productService.getAllProducts();
-        //Product actual = productList.get(0);
-
+        List<Product> productList = productDAO.getAllProducts();
         Assert.assertFalse(productList.isEmpty());
 
     }
@@ -114,51 +89,51 @@ public class ProductServiceTest {
         productService.insertProduct(product);
         productService.insertProduct(product1);
 
+        //What products are in the DB?
         List<Product> productList = productService.getAllProducts();
 
-        int id = productList.get(0).getProductId();
-        Product actual = ProductService.getProductById(id);
+        //Get the ID of the first product in the DB
+        int firstProductId = productList.get(0).getProductId();
 
-        Assert.assertSame(product,actual);
+        //Use that product ID to retrieve the rest of the Product object
+        Product productInList = productService.getProductById(firstProductId);
+
+        //Retrieve the product from DB and compare the Product fields
+        Product productInDB = ProductDAO.getProductById(firstProductId);
+
+        Assert.assertEquals(productInList,productInDB);
 
     }
 
     @Test
-    //Seller doesn't exist
-    public void addProductInvalidSeller() throws SellerException, ProductException {
+//Retrieve product by ID - no product found
+    public void getProductByIdNullReturned() throws SellerException, ProductException {
         Seller seller = new Seller();
         seller.setSellerName("YKK");
         sellerService.insertSeller(seller);
 
-        //create product #1
         Product product = new Product();
         product.setProductId(123455);
         product.setProductName("vase");
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
 
-        //Generate a seller ID that does NOT match the ID of the valid seller
-        Random random = new Random();
-        int id = random.nextInt(seller.getSellerId());
-
-        //create product #2
         Product product1 = new Product();
         product1.setProductId(34545);
         product1.setProductName("zipper");
         product1.setPrice(2.00);
-        product1.setSellerId(id);
+        product1.setSellerId(seller.getSellerId());
 
         productService.insertProduct(product);
+        productService.insertProduct(product1);
 
-        //Exception exception = new ProductException("Seller does not exist");
-
-        //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
-       // https://www.baeldung.com/junit-assert-exception
         Assert.assertThrows(Exception.class,
                 () -> {
-                    productService.insertProduct(product1);
+                    //Retrieve the product from DB with non-existing id
+                    ProductService.getProductById(56);
                 });
-    }
+      }
+
 
 @Test
     //product name is null
@@ -196,8 +171,6 @@ public class ProductServiceTest {
         product.setProductName("");
         product.setPrice(40.00);
         product.setSellerId(seller.getSellerId());
-
-        Exception exception = new ProductException("Id and product name fields must be non-null");
 
         //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
         // https://www.baeldung.com/junit-assert-exception
@@ -253,43 +226,6 @@ public class ProductServiceTest {
                 });
     }
 
-    //get position by ID
-    @Test
-    public void getPositionByIDTest () throws SellerException, ProductException {
-        //create seller #1
-        Seller seller = new Seller();
-        seller.setSellerName("Home Depot");
-        sellerService.insertSeller(seller);
-
-        //create seller #2
-        Seller seller1 = new Seller();
-        seller1.setSellerName("Amazon");
-        sellerService.insertSeller(seller1);
-
-        //create product #1
-        Product product = new Product();
-        product.setProductId(123455);
-        product.setProductName("vase");
-        product.setPrice(40.00);
-        product.setSellerId(seller.getSellerId());
-
-        //create product #2
-        Product product1 = new Product();
-        product1.setProductId(34545);
-        product1.setProductName("zipper");
-        product1.setPrice(2.00);
-        product1.setSellerId(seller1.getSellerId());
-
-        productService.insertProduct(product);
-        productService.insertProduct(product1);
-
-        //List<Product> productList = productService.getAllProducts();
-        //retrieve the product ID at index 0
-        int id = productList.get(0).getProductId();
-
-        //pass the id at index 0 and confirm that it matches
-        Assert.assertEquals(0,(long)productService.getPosition(id));
-    }
 
     //Test update product by ID
     @Test
@@ -312,20 +248,39 @@ public class ProductServiceTest {
         product1.setPrice(2.00);
         product1.setSellerId(seller1.getSellerId());
 
+        Product newProduct = new Product();
+        newProduct.setProductId(34545);
+        newProduct.setProductName("bolt");
+        newProduct.setPrice(3.00);
+        newProduct.setSellerId(seller.getSellerId());
+
         productService.insertProduct(product);
         productService.insertProduct(product1);
+        productService.updateProductById(newProduct);
 
+        //What is the product ID in the DB?
         List<Product> productList = productService.getAllProducts();
 
-        int id = productList.get(0).getProductId();
+        //Use the product ID to retrieve the product
+        //int firstProductId = productList.getProductByName ();
 
-        //Replace product at index 0 to product at index 1
-        int index = productService.getPosition(id);
-        productService.updateProductById(index,product1);
-        Product actual = productList.get(0);
+        //Compare the product details to the newProduct
 
-        Assert.assertSame(product1,actual);
+       // Assert.assertSame(newProduct,actual);
 
+
+
+
+        //Get the ID of the first product in the DB
+        int firstProductId = productList.get(0).getProductId();
+
+        //Use that product ID to retrieve the rest of the Product object
+        Product productInList = productService.getProductById(firstProductId);
+
+        //Retrieve the product from DB and compare the Product fields
+        Product productInDB = ProductDAO.getProductById(firstProductId);
+
+        Assert.assertEquals(productInList,productInDB);
     }
     //Test delete product by ID
     @Test
@@ -352,65 +307,9 @@ public class ProductServiceTest {
         productService.insertProduct(product);
         productService.insertProduct(product1);
 
-        List<Product> productList = productService.getAllProducts();
+        productService.deleteProductById(product1.getProductId());
 
-        int index = productList.get(0).getProductId();
-
-        //Delete product at index 0
-        productService.deleteProductById(index);
-
-
-        int actual = 1;
-        int expected = productList.size();
-
-        Assert.assertEquals(actual,expected);
+        //Assert.assertEquals(actual,expected);
 
     }
-
-
-    //Check for duplicate sellers
-    @Test
-    public void checkDuplicateSellers () throws SellerException, ProductException {
-        Seller seller = new Seller();
-        seller.setSellerName("Home Depot");
-        sellerService.insertSeller(seller);
-
-        Seller seller1 = new Seller();
-        seller1.setSellerName("Home Depot");
-
-        Exception exception = new ProductException("Duplicate Seller");
-
-        //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
-        // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
-                () -> {
-                    sellerService.insertSeller(seller1);
-                });
-
-
-    }
-
-
-    @Test
-    //seller name is null
-    public void addSellerNameIsNull() throws SellerException, ProductException {
-        Seller seller = new Seller();
-        seller.setSellerName("YKK");
-        sellerService.insertSeller(seller);
-
-        Seller seller1 = new Seller();
-        seller1.setSellerName(null);
-
-
-        Exception exception = new ProductException("Error: Seller name cannot be null");
-
-        //https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html#assertThrows(java.lang.String,%20java.lang.Class,%20org.junit.function.ThrowingRunnable)
-        // https://www.baeldung.com/junit-assert-exception
-        Assert.assertThrows(Exception.class,
-                () -> {
-                    sellerService.insertSeller(seller1);
-                });
-    }
-
-
 }

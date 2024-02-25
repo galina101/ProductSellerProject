@@ -33,7 +33,6 @@ public class ProductService {
             //generate product ID
             Random random = new Random();
             int id = random.nextInt(Integer.MAX_VALUE);
-            //int id = (int) (Math.random() * Integer.MAX_VALUE);
 
             product.setProductId(id);
             productDAO.insertProduct(product);
@@ -49,37 +48,15 @@ public class ProductService {
         }else{
             return product;
         }
-//        for(int i = 0; i < productList.size(); i++){
-//            currentProduct = productList.get(i);
-//            if(currentProduct.getProductId() == id){
-//
-//                return currentProduct;
-//            }
-//        }
-    }
-    public static Integer getPosition(int id){
-        Product currentProduct;
-        int i =0;
-
-//        for(i = 0; i < productList.size(); i++){
-//            currentProduct = productList.get(i);
-//            if(currentProduct.getProductId() == id){
-//                return i;
-//            }
-//        }
-        return null;
-        //throw ProductException("Product ID not found");
     }
 
     public void deleteProductById(int id) {
         ProductDAO.deleteProductById(id);
     }
 
-
         public void updateProductById (Product product) throws ProductException {
             if (verifyProduct(product)) {
                 ProductDAO.updateProductById(product);
-
             }
         }
     public boolean verifyProduct (Product product) throws ProductException{

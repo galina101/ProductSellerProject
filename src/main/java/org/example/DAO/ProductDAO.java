@@ -79,7 +79,7 @@ public class ProductDAO {
             PreparedStatement ps = conn.prepareStatement(
                     "delete from product where product_id = ?");
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ps.executeUpdate();
 
            }catch (SQLException e){
             e.printStackTrace();
