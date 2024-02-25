@@ -68,31 +68,11 @@ public class SellerDAO {
         }
         return null;
     }
-    //Placed here to be used with the test to update the product
-    public static Seller getSellerByName(String name){
-        try{
-            PreparedStatement ps = conn.prepareStatement(
-                    "select * from seller where seller_name = ?");
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                int sellerId = rs.getInt("seller_id");
-                String sellerName = rs.getString("seller_name");
-                Seller seller = new Seller(sellerId, sellerName);
-                return seller;
-            }else{
-                return null;
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public static boolean sellerNameExists(String name) throws SellerException {
         try{
             PreparedStatement ps = conn.prepareStatement(
-                    "select * from seller where seller_name = ?");
+                    "select * from seller where UPPER(seller_name) = UPPER(?)");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
 

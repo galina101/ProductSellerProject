@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Added test cases after including DAO">
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="More code coverage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/db.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/SellerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SellerServiceTest.java" afterDir="false" />
     </list>
@@ -87,7 +86,7 @@
     "JUnit.ProductServiceTest.updateProductByIdTest.executor": "Run",
     "JUnit.SellerServiceTest.checkDuplicateSellers.executor": "Run",
     "JUnit.SellerServiceTest.executor": "Coverage",
-    "JUnit.java in ProductSellerProject.executor": "Run",
+    "JUnit.java in ProductSellerProject.executor": "Coverage",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -123,7 +122,7 @@
       <recent name="org.example.Exception" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.java in ProductSellerProject">
     <configuration name="Tables.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/src/main/resources/Tables.sql" />
       <script-mode>FILE</script-mode>
@@ -149,11 +148,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SellerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.updateProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SellerServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="updateProductByIdTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,10 +179,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.java in ProductSellerProject" />
-        <item itemvalue="JUnit.ProductServiceTest.addProductNameIsEmptyString" />
+        <item itemvalue="JUnit.ProductServiceTest.updateProductByIdTest" />
         <item itemvalue="JUnit.SellerServiceTest.checkDuplicateSellers" />
+        <item itemvalue="JUnit.ProductServiceTest.addProductNameIsEmptyString" />
         <item itemvalue="JUnit.ProductServiceTest" />
-        <item itemvalue="JUnit.SellerServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +212,7 @@
       <workItem from="1708702247322" duration="5777000" />
       <workItem from="1708723663481" duration="4903000" />
       <workItem from="1708797626841" duration="7016000" />
-      <workItem from="1708805181228" duration="15502000" />
+      <workItem from="1708805181228" duration="17444000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -334,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708820534865</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="More code coverage">
+      <option name="closed" value="true" />
+      <created>1708822406082</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708822406082</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +365,8 @@
     <MESSAGE value="Updated the unit tests to include new structure of Seller object." />
     <MESSAGE value="Incorporated DAO after noticing that my DAO variables are not called in Main" />
     <MESSAGE value="Added test cases after including DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added test cases after including DAO" />
+    <MESSAGE value="More code coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="More code coverage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -371,16 +380,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/ProductServiceTest.java</url>
           <line>17</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java</url>
-          <line>103</line>
-          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Service/SellerService.java</url>
@@ -416,6 +415,6 @@
     <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest.ic" NAME="ProductServiceTest Coverage Results" MODIFIED="1708820410691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProductSellerProject$SellerServiceTest.ic" NAME="SellerServiceTest Coverage Results" MODIFIED="1708820396591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/ProductSellerProject$ProductServiceTest_checkDuplicateSellers.ic" NAME="ProductServiceTest.checkDuplicateSellers Coverage Results" MODIFIED="1708819404211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ProductSellerProject$java_in_ProductSellerProject.ic" NAME="java in ProductSellerProject Coverage Results" MODIFIED="1708821135246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ProductSellerProject$java_in_ProductSellerProject.ic" NAME="java in ProductSellerProject Coverage Results" MODIFIED="1708824322727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

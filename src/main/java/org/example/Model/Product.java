@@ -2,13 +2,6 @@ package org.example.Model;
 
 import java.util.Objects;
 
-/**
- *   Product
- *         Product Id (must be unique)
- *         Product Name
- *         Price
- *         Seller Name
- */
 public class Product {
 
     private Integer productId;
@@ -34,11 +27,6 @@ public class Product {
         return Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && Objects.equals(price, product.price) && Objects.equals(sellerId, product.sellerId);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, price, sellerId);
-    }
-
     public Integer getProductId() {
         return productId;
     }
@@ -52,7 +40,6 @@ public class Product {
     }
 
     public Integer getSellerId() {return sellerId;}
-
 
     //check for the product ID to be unique
     public void setProductId(Integer productId) {
@@ -70,7 +57,6 @@ public class Product {
     public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
-
 
     @Override
     public String toString() {

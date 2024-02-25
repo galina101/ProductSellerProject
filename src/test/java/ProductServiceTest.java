@@ -234,39 +234,24 @@ public class ProductServiceTest {
         product1.setPrice(2.00);
         product1.setSellerId(seller1.getSellerId());
 
+        //save the products as they were saved in DB with their product IDs
+        Product productInDB = productService.insertProduct(product);
+        Product product1InDB = productService.insertProduct(product1);
+
         Product newProduct = new Product();
-        newProduct.setProductId(34545);
+        newProduct.setProductId(productInDB.getProductId());
         newProduct.setProductName("bolt");
         newProduct.setPrice(3.00);
         newProduct.setSellerId(seller.getSellerId());
 
-        productService.insertProduct(product);
-        productService.insertProduct(product1);
+        //pass new product updated details to update
         productService.updateProductById(newProduct);
 
-        //What is the product ID in the DB?
-        List<Product> productList = productService.getAllProducts();
-
-        //Use the product ID to retrieve the product
-        //int firstProductId = productList.getProductByName ();
-
-        //Compare the product details to the newProduct
-
-       // Assert.assertSame(newProduct,actual);
-
-
-
-
-        //Get the ID of the first product in the DB
-        int firstProductId = productList.get(0).getProductId();
-
-        //Use that product ID to retrieve the rest of the Product object
-        Product productInList = productService.getProductById(firstProductId);
 
         //Retrieve the product from DB and compare the Product fields
-        Product productInDB = ProductDAO.getProductById(firstProductId);
+        Product updatedProductInDB = ProductDAO.getProductById(productInDB.getProductId());
 
-        Assert.assertEquals(productInList,productInDB);
+        Assert.assertEquals(newProduct,updatedProductInDB);
     }
     //Test delete product by ID
     @Test

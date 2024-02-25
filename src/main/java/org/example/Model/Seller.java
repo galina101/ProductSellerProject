@@ -46,8 +46,4 @@ public class Seller {
         return Objects.equals(sellerId, seller.sellerId) && Objects.equals(sellerName, seller.sellerName);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(sellerId, sellerName);
-    }
 }
