@@ -275,12 +275,17 @@ public class ProductServiceTest {
         product1.setPrice(2.00);
         product1.setSellerId(seller1.getSellerId());
 
-        productService.insertProduct(product);
-        productService.insertProduct(product1);
+        Product productInDB = productService.insertProduct(product);
+        Product productInDB1 = productService.insertProduct(product1);
 
-        productService.deleteProductById(product1.getProductId());
+        int deletedProductID = productInDB.getProductId();
 
-        //Assert.assertEquals(actual,expected);
+        productService.deleteProductById(deletedProductID);
+
+        Assert.assertThrows(ProductException.class,
+                () -> {
+                    productService.getProductById(deletedProductID);
+                });
 
     }
 }

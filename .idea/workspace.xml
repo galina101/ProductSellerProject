@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="More code coverage">
+    <list default="true" id="68a27913-cbf4-4a15-b047-2f03dea1f6a4" name="Changes" comment="Even more code coverage. Added a test case to update the product">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/SellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Model/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SellerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SellerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,27 +118,28 @@
       <recent name="org.example.Exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in ProductSellerProject">
+  <component name="RunManager" selected="JUnit.ProductServiceTest.deleteProductByIdTest">
     <configuration name="Tables.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/src/main/resources/Tables.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="9b3b94a6-7731-40db-94cb-7ede140164bb" />
       <method v="2" />
     </configuration>
-    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProductSellerProject" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ProductServiceTest.addProductNameIsEmptyString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductSellerProject" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
       <option name="METHOD_NAME" value="addProductNameIsEmptyString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.deleteProductByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductSellerProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProductServiceTest" />
+      <option name="METHOD_NAME" value="deleteProductByIdTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -178,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductServiceTest.deleteProductByIdTest" />
         <item itemvalue="JUnit.java in ProductSellerProject" />
         <item itemvalue="JUnit.ProductServiceTest.updateProductByIdTest" />
         <item itemvalue="JUnit.SellerServiceTest.checkDuplicateSellers" />
         <item itemvalue="JUnit.ProductServiceTest.addProductNameIsEmptyString" />
-        <item itemvalue="JUnit.ProductServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +209,7 @@
       <workItem from="1708702247322" duration="5777000" />
       <workItem from="1708723663481" duration="4903000" />
       <workItem from="1708797626841" duration="7016000" />
-      <workItem from="1708805181228" duration="17444000" />
+      <workItem from="1708805181228" duration="18442000" />
     </task>
     <task id="LOCAL-00001" summary="Working post, get, get by ID. Delete is still in progress">
       <option name="closed" value="true" />
@@ -342,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708822406082</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Even more code coverage. Added a test case to update the product">
+      <option name="closed" value="true" />
+      <created>1708824406331</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708824406331</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +371,8 @@
     <MESSAGE value="Incorporated DAO after noticing that my DAO variables are not called in Main" />
     <MESSAGE value="Added test cases after including DAO" />
     <MESSAGE value="More code coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="More code coverage" />
+    <MESSAGE value="Even more code coverage. Added a test case to update the product" />
+    <option name="LAST_COMMIT_MESSAGE" value="Even more code coverage. Added a test case to update the product" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
