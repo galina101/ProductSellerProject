@@ -1,5 +1,6 @@
 package org.example.Controller;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import io.javalin.http.Header;
 import org.example.Exception.ProductException;
 import org.example.Exception.SellerException;
 import org.example.Main;
@@ -7,13 +8,11 @@ import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
-import java.util.HashSet;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import org.example.DAO.*;
 
 public class InventoryController {
 
@@ -27,6 +26,21 @@ public class InventoryController {
 
     public Javalin getAPI() {
         Javalin api = Javalin.create();
+
+        api.before (ctx -> {
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "*");
+        });
+
+        //Javalin to handle preflight requests (sent via OPTIONS)
+        api.options("/*", ctx -> {
+            ctx.header(Header.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:3000");
+            ctx.header(Header.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE, OPTIONS");
+            ctx.header(Header.ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type, Authorization");
+            ctx.status(200);
+        });
+
 
         /** Server Health Check */
         api.get("/health/",
